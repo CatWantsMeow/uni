@@ -1,0 +1,87 @@
+<objects>
+    <object type="main.figures.Line">
+        <start>
+            <x>3.200000</x>
+            <y>-1.200000</y>
+        </start>
+        <end>
+            <x>1.000000</x>
+            <y>3.000000</y>
+        </end>
+    </object>
+    <object type="main.figures.Line">
+        <start>
+            <x>0.000000</x>
+            <y>-2.000000</y>
+        </start>
+        <end>
+            <x>3.000000</x>
+            <y>-2.330000</y>
+        </end>
+    </object>
+    <object type="main.figures.Line">
+        <start>
+            <x>-2.300000</x>
+            <y>-1.200000</y>
+        </start>
+        <end>
+            <x>1.230000</x>
+            <y>2.230000</y>
+        </end>
+    </object>
+    <object type="main.figures.Polygon"></object>
+    <object type="main.figures.Polygon">
+        <point>
+            <x>0.000000</x>
+            <y>0.000000</y>
+        </point>
+        <point>
+            <x>1.000000</x>
+            <y>0.000000</y>
+        </point>
+        <point>
+            <x>2.000000</x>
+            <y>3.100000</y>
+        </point>
+    </object>
+    <object type="main.figures.Rectangle">
+        <lt-point>
+            <x>-1.000000</x>
+            <y>-2.000000</y>
+        </lt-point>
+        <rb-point>
+            <x>2.000000</x>
+            <y>1.000000</y>
+        </rb-point>
+    </object>
+    <object type="main.figures.Rectangle">
+        <lt-point>
+            <x>-2.300000</x>
+            <y>-3.100000</y>
+        </lt-point>
+        <rb-point>
+            <x>1.000000</x>
+            <y>3.200000</y>
+        </rb-point>
+    </object>
+    <object type="main.figures.Circle">
+        <center>
+            <x>0.000000</x>
+            <y>0.000000</y>
+        </center>
+        <radius>1.000000</radius>
+    </object>
+    <object type="main.figures.Circle">
+        <center>
+            <x>-1.200000</x>
+            <y>-1.000000</y>
+        </center>
+        <radius>23.300000</radius>
+    </object>
+    <object type="plugins.MultiLine">
+        <point>
+            <x>1.000000</x>
+            <y>2.000000</y>
+        </point>
+    </object>
+</objects>
