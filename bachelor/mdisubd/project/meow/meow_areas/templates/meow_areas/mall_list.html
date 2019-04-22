@@ -1,0 +1,76 @@
+{% extends "meow_main/main.html" %}
+
+{% block content %}
+    {% load meow_filters %}
+
+    <table id="mall_table" align="center"
+           class="table table-bordered table-hover table-striped">
+        <caption>
+            <div class="page-header" style="color: black;">
+                <h1>Shopping malls</h1>
+            </div>
+        </caption>
+        <thead>
+            <tr class="active">
+                <td><b>Name</b></td>
+                <td><b>Description</b></td>
+                <td><b>Location</b></td>
+                <td><b>Floors count</b></td>
+                <td><b>Parking size</b></td>
+                <td width="100px"><b></b></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mall in malls %}
+                <tr>
+                    <td>{{ mall.1 }}</td>
+                    <td>{{ mall.2 }}</td>
+                    <td>{{ mall.5.3|encode }}, {{ mall.5.4|encode }}, {{ mall.5.5 }}</td>
+                    <td>{{ mall.3 }} floors</td>
+                    <td>{{ mall.4 }} spaces</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="{% url "mall-detail" mall.0 %}" role="button"
+                                       class=" btn btn-info button-lg">
+                                        <span class='glyphicon glyphicon-eye-open'></span>
+                                        Details
+                                    </a>
+                                </td>
+                                {% if user_group_name == 'admins' %}
+                                    <td>
+                                        <a href="{% url "mall-edit" mall.0 %}" role="button"
+                                           class="btn btn-success button-lg"
+                                           style="margin-left: 5px;">
+                                            <span class='glyphicon glyphicon-pencil'></span>
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url "mall-delete" mall.0 %}" role="button"
+                                           class=" btn btn-danger button-lg"
+                                           style="margin-left: 5px;">
+                                            <span class='glyphicon glyphicon-remove'></span>
+                                            Delete
+                                        </a>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="margin: auto auto 20px;width: 95%;">
+        {% if user_group_name == 'admins' %}
+            <a href="{% url "mall-create" %}" role="button"
+               class=" btn btn-success button-lg"
+               style="width: 100%;">
+                <span class='glyphicon glyphicon-plus'></span>
+                Add new
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "meow_main/main.html" %}
+
+{% block content %}
+    {% load meow_filters %}
+
+    <table id="mall_table" align="center"
+           class="table table-bordered table-hover table-striped"
+           style="font-size: 0.8em;">
+        <caption>
+            <div class="page-header" style="color: black;">
+                <h1>Rent contracts</h1>
+            </div>
+        </caption>
+        <thead>
+            <tr class="active">
+                <td><b>Code</b></td>
+                <td><b>Start date</b></td>
+                <td><b>End date</b></td>
+                <td><b>Price</b></td>
+                <td><b>Additional payment</b></td>
+                <td><b>Discount</b></td>
+                <td><b>Checking account</b></td>
+                <td><b>Requirements</b></td>
+                <td><b>{% if user_group_name == 'tenants' %} Landlord {% else %} Tenants {% endif %}</b></td>
+                <td><b>Shopping area</b></td>
+                {% if user_group_name == 'landlords' %}
+                    <td></td>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for rent_contract in rent_contracts %}
+                <tr>
+                    <td>{{ rent_contract.1 }}</td>
+                    <td>{{ rent_contract.2 }}</td>
+                    <td>{{ rent_contract.3 }}</td>
+                    <td>{{ rent_contract.4 }}</td>
+                    <td>{{ rent_contract.5 }}</td>
+                    <td>{{ rent_contract.6 }}</td>
+                    <td>{{ rent_contract.7 }}</td>
+                    <td>{{ rent_contract.8 }}</td>
+                    <td>{{ rent_contract.10 }} {{ rent_contract.11 }} ({{ rent_contract.12 }}, {{ rent_contract.13 }})</td>
+                    <td>{{ rent_contract.15 }}</td>
+                    {% if user_group_name == 'landlords' %}
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        {% if rent_contract.16 == 0 %}
+                                            <a href="{% url "rent-contract-start-rent" rent_contract.0 %}" role="button"
+                                               class="btn btn-info button-lg"
+                                               style="margin-left: 5px;">
+                                                <span class='glyphicon glyphicon-play'></span>
+                                                Start rent
+                                            </a>
+                                        {% else %}
+                                            <a href="{% url "rent-contract-end-rent" rent_contract.0 %}" role="button"
+                                               class="btn btn-info button-lg"
+                                               style="margin-left: 5px;">
+                                                <span class='glyphicon glyphicon-stop'></span>
+                                                End rent
+                                            </a>
+                                        {% endif %}
+
+                                    <td>
+                                        <a href="{% url "rent-contract-edit" rent_contract.0 rent_contract.9 rent_contract.14 %}" role="button"
+                                           class="btn btn-success button-lg {% if rent_contract.16 > 0 %} disabled {% endif %}"
+                                           style="margin-left: 5px;">
+                                            <span class='glyphicon glyphicon-pencil'></span>
+                                            Edit
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <a href="{% url "rent-contract-delete" rent_contract.0 %}" role="button"
+                                           class="btn btn-danger button-lg {% if rent_contract.16 > 0 %} disabled {% endif %}"
+                                           style="margin-left: 5px;">
+                                            <span class='glyphicon glyphicon-remove'></span>
+                                            Delete
+                                        </a>
+                                    </td>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

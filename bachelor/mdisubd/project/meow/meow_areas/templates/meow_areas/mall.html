@@ -1,0 +1,120 @@
+{% extends "meow_main/main.html" %}
+
+{% block content %}
+    {% load meow_filters %}
+
+    <div id="mall_details_container">
+        <div class="page-header">
+            <h1>{{ mall.1 }} <small>shopping mall</small></h1>
+        </div>
+        <div>
+            <label class='control-label'>
+                Description:
+            </label>
+            {{ mall.2|encode }}
+        </div>
+        <div>
+            <label class='control-label'>
+                Location:
+            </label>
+            {{ mall.5.3|encode }}, {{ mall.5.4|encode }}, {{ mall.5.5 }}
+        </div>
+        <div>
+            <label class='control-label'>
+                Floors count:
+            </label>
+            {{ mall.3 }}
+        </div>
+        <div>
+            <label class='control-label'>
+                Parking size:
+            </label>
+            {{ mall.4 }}
+        </div>
+
+        <label class='control-label'>
+                Shopping areas:
+        </label>
+    </div>
+
+
+    <table id="mall_table" align="center"
+           class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr class="active">
+                <td><b>Description</b></td>
+                <td><b>Area</b></td>
+                <td><b>Landlord</b></td>
+                <td><b>Price</b></td>
+                {% if user_group_name == 'admins' or user_group_name == 'tenants' %}
+                    <td>
+                    </td>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for area in areas %}
+                <tr>
+                    <td>{{ area.2 }}</td>
+                    <td>{{ area.1 }}</td>
+                    <td>{{ area.4.7 }} {{ area.4.8 }} {{ area.4.9 }} ({{ area.4.10 }}, {{ area.4.11 }})</td>
+                    <td>{{ area.5.1 }}</td>
+                    {% if user_group_name == 'admins' %}
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="{% url "area-edit" mall.0 area.0 %}" role="button"
+                                           class="btn btn-success button-lg"
+                                           style="margin-left: 5px;">
+                                            <span class='glyphicon glyphicon-pencil'></span>
+                                            Edit
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url "area-delete" mall.0 area.0 %}" role="button"
+                                           class=" btn btn-danger button-lg"
+                                           style="margin-left: 5px;">
+                                            <span class='glyphicon glyphicon-remove'></span>
+                                            Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    {% endif %}
+
+                    {% if user_group_name == 'tenants' %}
+                            <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="{% url "area-rent-request" mall.0 area.0 %}" role="button"
+                                           class="btn btn-danger button-lg
+                                           {% if area.0 in rent_request_ids %} disabled {% endif %}"
+                                           style="margin-left: 5px;">
+                                            <span class='glyphicon glyphicon-plus'></span>
+                                            Request on rent
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    {% if user_group_name == 'admins' %}
+        <div style="margin: auto auto 20px;width: 95%;">
+            <a href="{% url "area-create" mall.0 %}" role="button"
+               class=" btn btn-success button-lg"
+               style="width: 100%;">
+                <span class='glyphicon glyphicon-plus'></span>
+                Add new
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

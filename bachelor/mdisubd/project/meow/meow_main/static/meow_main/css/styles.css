@@ -1,0 +1,127 @@
+body {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    /*position: fixed;*/
+    /*display: flex;*/
+}
+
+textarea {
+    resize: vertical;
+}
+
+h1 {
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+faded {
+    color: rgba(0, 0, 0, 0.25);
+}
+
+.right-float {
+    float: right;
+}
+
+.main-container {
+    width: 60%;
+    background: white;
+}
+
+.long-button {
+    width: 200px;
+}
+
+.one-from-three {
+    width: 33.15%;
+}
+
+.fill-width {
+    width: 100%;
+}
+
+.content {
+    margin: auto;
+}
+
+.glyphicon {
+    margin-right: 4px;
+}
+
+.panel-heading {
+    width: 100%;
+}
+
+.navbar-nav li {
+    font-size: 1.3em;
+}
+
+.scrollable {
+    margin:auto;
+    overflow-y: auto;
+    max-height: 100%;
+    width: 100%;
+}
+
+#login_form_container {
+    width: 300px;
+    margin-top: 10%;
+}
+
+#registation_form_container {
+    width: 300px;
+    margin-top: 20px;
+}
+
+#mall_create_form_container {
+    width: 500px;
+    margin-top: 20px;
+}
+
+#login_button_container {
+    display: flex;
+}
+
+#login_button {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#sign_up_button {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#pheonix_container {
+    margin-top: 0;
+    width: 100%;
+    display: flex;
+}
+
+#mall_details_container {
+    width: 95%;
+    margin: auto;
+    font-size: 1.2em;
+}
+
+#mall_details_container div {
+    margin-bottom: 20px;
+}
+
+#mall_table {
+    font-size: 1.1em;
+    vertical-align: middle;
+    width: 95%;
+}
+
+#mall_table td {
+    vertical-align: middle;
+}
+
+#mall_table thead tr td {
+    background: #EEEEEE;
+    padding: 12px;
+    font-size: 1.1em;
+}

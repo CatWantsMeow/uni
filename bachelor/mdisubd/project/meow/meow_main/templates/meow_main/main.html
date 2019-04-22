@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load staticfiles %}
+
+        <script src="{% static 'meow_main/js/jquery-1.11.3.min.js' %}"></script>
+        <script src="{% static 'meow_main/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'meow_main/js/bootstrap-select.min.js' %}"></script>
+
+        <link rel="stylesheet" href="{% static 'meow_main/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'meow_main/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'meow_main/css/docs.min.css' %}">
+        <link rel="stylesheet" href="{% static 'meow_main/css/bootstrap-select.min.css' %}">
+        <link rel="stylesheet" href="{% static 'meow_main/css/styles.css' %}">
+
+        <title>Meow</title>
+    </head>
+
+    <body>
+        <div style="width: 100%;">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{% url 'mall-list' %}">
+                                <span class='glyphicon glyphicon-list'></span>
+                                Malls list
+                            </a>
+                        </li>
+
+                    {% if user_group_name == 'tenants' or user_group_name == 'landlords' %}
+                        <li>
+                            <a href="{% url 'rent-request-list' %}">
+                                <span class='glyphicon glyphicon-list'></span>
+                                    My rent requests
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'rent-contract-list' %}">
+                                <span class='glyphicon glyphicon-list'></span>
+                                    My rent contracts
+                            </a>
+                        </li>
+                    {% endif %}
+                    </ul>
+
+                    {% if not user_group_name %}
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="{% url 'login' %}">
+                                    <span class='glyphicon glyphicon-log-in'></span>
+                                    Sign in
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'landlord-registration' %}">
+                                    <span class='glyphicon glyphicon-arrow-up'></span>
+                                    Sign up as landlord
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'tenant-registration' %}">
+                                    <span class='glyphicon glyphicon-arrow-up'></span>
+                                    Sign up as tenant
+                                </a>
+                            </li>
+                        </ul>
+                    {% elif user_group_name %}
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <span class='glyphicon glyphicon-user'></span>
+                                    Change profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <span class='glyphicon glyphicon-log-out'></span>
+                                    Sign out
+                                </a>
+                            </li>
+                        </ul>
+                    {% endif %}
+
+
+                </div>
+            </nav>
+        </div>
+
+        <div class='container-flex scrollable'>
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </body>
+</html>

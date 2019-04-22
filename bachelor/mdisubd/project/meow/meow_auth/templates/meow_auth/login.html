@@ -1,0 +1,40 @@
+{% extends "meow_main/main.html" %}
+
+{% block content %}
+    <div id='login_form_container' class='container content'>
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in login_form %}
+                <div class='form-group {% if field.errors %} has-error has-feedback {% endif %}'>
+                    <label class='control-label' for='{{ field.name }}'>
+                        {{ field.help_text }}:
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <span class='glyphicon glyphicon-exclamation-sign form-control-feedback'></span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div id="login_button_container">
+                <button id='login_button' type='submit' class="btn btn-primary">
+                    <span class='glyphicon glyphicon-log-in'></span>
+                    Sign in
+                </button>
+            </div>
+
+            <a id="sign_up_button" href="{% url 'tenant-registration' %}"
+               role="button" class=" btn btn-success button-lg">
+                <span class='glyphicon glyphicon-arrow-up'></span>
+                Sign up as <b>tenant</b>
+            </a>
+
+            <a id="sign_up_button" href="{% url 'landlord-registration' %}"
+               role="button" class=" btn btn-success button-lg">
+                <span class='glyphicon glyphicon-arrow-up'></span>
+                Sign up as <b>landlord</b>
+            </a>
+        </form>
+    </div>
+{% endblock %}

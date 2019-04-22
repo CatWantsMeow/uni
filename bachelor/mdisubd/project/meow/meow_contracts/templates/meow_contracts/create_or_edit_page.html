@@ -1,0 +1,26 @@
+{% extends "meow_main/main.html" %}
+
+{% block content %}
+    <div id='mall_create_form_container' class='container content'>
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class='form-group {% if field.errors %} has-error has-feedback {% endif %}'>
+                    <label class='control-label' for='{{ field.name }}'>
+                        {{ field.help_text }}:
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <span clazss='glyphicon glyphicon-exclamation-sign form-control-feedback'></span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button id='login_button' type='submit' class="btn btn-primary">
+                <span class='glyphicon glyphicon-plus'></span>
+                Save
+            </button>
+        </form>
+    </div>
+{% endblock %}

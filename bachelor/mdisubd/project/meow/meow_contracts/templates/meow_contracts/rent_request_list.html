@@ -1,0 +1,55 @@
+{% extends "meow_main/main.html" %}
+
+{% block content %}
+    {% load meow_filters %}
+
+    <table id="mall_table" align="center"
+           class="table table-bordered table-hover table-striped">
+        <caption>
+            <div class="page-header" style="color: black;">
+                <h1>Rent requests</h1>
+            </div>
+        </caption>
+        <thead>
+            <tr class="active">
+                {% if user_group_name == 'landlords' %}
+                    <td><b>Tenant</b></td>
+                {% endif %}
+                <td><b>Shopping area</b></td>
+                <td><b>Description</b></td>
+                {% if user_group_name == 'landlords' %}
+                    <td></td>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for rent_request in rent_requests %}
+                <tr>
+                    {% if user_group_name == 'landlords' %}
+                        <td>{{ rent_request.1 }} {{ rent_request.2 }} ({{ rent_request.3 }}, {{ rent_request.4 }})</td>
+                        <td>{{ rent_request.6 }}</td>
+                        <td>{{ rent_request.7 }}</td>
+                        <td>
+                            <a href="{% url "rent-contract-create" rent_request.0 rent_request.5  %}" role="button"
+                               class="btn btn-danger button-lg"
+                               style="margin-left: 5px;">
+                                <span class='glyphicon glyphicon-ok'></span>
+                                Accept
+                            </a>
+
+                            <a href="{% url "rent-request-delete" rent_request.0 rent_request.5 %}" role="button"
+                               class="btn btn-danger button-lg"
+                               style="margin-left: 5px;">
+                                <span class='glyphicon glyphicon-remove'></span>
+                                Decline
+                            </a>
+                        </td>
+                    {% else %}
+                        <td>{{ rent_request.1 }}</td>
+                        <td>{{ rent_request.2 }}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
