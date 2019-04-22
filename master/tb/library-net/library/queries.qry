@@ -1,0 +1,34 @@
+query selectAllSuppliedBooks {
+  description: "Select all not supplied books"
+  statement:
+      SELECT org.library.net.Book
+      WHERE (supplied == false)
+}
+
+query selectBooksBySupplier {
+  description: "Select all books for a supplier"
+  statement:
+      SELECT org.library.net.Book
+      WHERE (supplier == _$supplier)
+}
+
+query selectBooksByReader {
+  description: "Select all books for a reader"
+  statement:
+      SELECT org.library.net.Book
+      WHERE (currentReader == _$reader)
+}
+
+query selectNotOrderedBooks {
+  description: "Select all free books"
+  statement:
+      SELECT org.library.net.Book
+      WHERE ((ordered == false) AND (supplied == true))
+}
+
+query selectFinesByReader {
+  description: "Select all fines for a reader"
+  statement:
+      SELECT org.library.net.Fine
+      WHERE (reader == _$reader)
+}

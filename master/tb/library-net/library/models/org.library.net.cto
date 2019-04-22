@@ -1,0 +1,81 @@
+/**
+ * My library network
+ */
+namespace org.library.net
+
+asset Book identified by id {
+    o String id
+    o String name
+    o String author optional
+    o String description optional
+
+    o Boolean supplied default=false optional
+    --> Supplier supplier optional
+
+    o Boolean ordered default=false optional
+    o Boolean onHands default=false optional
+    o DateTime givingDate optional
+    --> Reader currentReader optional
+}
+
+asset Fine identified by id {
+  o String id
+  o Integer size
+  o String reason optional
+  --> Reader reader
+  --> Book book
+}
+
+asset SupplyOrder identified by id {
+  o String id
+  --> Book book
+}
+
+participant Reader identified by id {
+    o String id
+    o String firstName
+    o String lastName
+    o String phoneNumber
+    o String email optional
+}
+
+participant Librarian identified by id {
+    o String id
+    o String firstName
+    o String lastName
+}
+
+participant Supplier identified by id {
+    o String id
+    o String firstName
+    o String lastName
+    o String phoneNumber
+    o String email optional
+}
+
+transaction BookOrder {
+    --> Book book
+    --> Reader reader
+}
+
+transaction BookGiving {
+    --> Book book
+    --> Reader reader
+    --> Librarian librarian
+}
+
+transaction BookReturning {
+    --> Book book
+    --> Reader reader
+    --> Librarian librarian
+}
+
+transaction BooksSupply {
+    --> Supplier supplier
+    --> SupplyOrder order
+}
+
+transaction FinePayment {
+    --> Fine fine
+    --> Reader reader
+}

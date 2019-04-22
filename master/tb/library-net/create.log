@@ -1,0 +1,43 @@
+1. Start fabric:
+> ./startFabric.sh
+
+2. Create admin card:
+> ./createPeerAdminCard.sh
+
+
+1. Create sample network:
+> yo hyperledger-composer:businessnetwork
+Welcome to the business network generator
+? Business network name: library
+? Description: Library
+? Author name:  Georgiy Yarosh
+? Author email: cat.wants.meow@gmail.com
+? License: Apache-2.0
+? Namespace: org.library.net
+? Do you want to generate an empty template network? No: generate a populated sample network
+   create package.json
+   create README.md
+   create models/org.library.net.cto
+   create permissions.acl
+   create .eslintrc.yml
+   create features/sample.feature
+   create features/support/index.js
+   create test/logic.js
+   create lib/logic.js
+
+
+3. Create network archive:
+> composer archive create -t dir -n .
+
+4. Install network:
+> composer network install --card PeerAdmin@hlfv1 --archiveFile library@0.0.1.bna
+
+4. Start network:
+> composer network start --networkName library --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+
+5. Import admin identity:
+> composer card import --file networkadmin.card
+
+6. yo hyperledger-composer:angular
+
+https://courses.cognitiveclass.ai/certificates/415a3d8860014750a0e31c9c444e5332

@@ -1,0 +1,90 @@
+/**
+ * Access control rules for library-network
+ */
+rule SupplierReadBooks {
+    description: "Allow supplier read books"
+    participant: "org.library.net.Supplier"
+    operation: READ
+    resource: "org.library.net.Book"
+    action: ALLOW
+}
+
+rule SupplierReadSupplyOrders {
+    description: "Allow supplier read supply orders"
+    participant: "org.library.net.Supplier"
+    operation: READ
+    resource: "org.library.net.SupplyOrder"
+    action: ALLOW
+}
+
+rule SupplierSupplyBook {
+    description: "Allow supplier supply books"
+    participant: "org.library.net.Supplier"
+    operation: ALL
+    resource: "org.library.net.BooksSupply"
+    action: ALLOW
+}
+
+rule ReaderReadBooks {
+    description: "Allow reader read books"
+    participant: "org.library.net.Reader"
+    operation: READ
+    resource: "org.library.net.Book"
+    action: ALLOW
+}
+
+rule ReaderReadFines {
+    description: "Allow reader read fines"
+    participant: "org.library.net.Reader"
+    operation: READ
+    resource: "org.library.net.Fine"
+    action: ALLOW
+}
+
+rule ReaderOrderBook {
+    description: "Allow reader order books"
+    participant: "org.library.net.Reader"
+    operation: ALL
+    resource: "org.library.net.BookOrder"
+    action: ALLOW
+}
+
+rule ReaderPayFines {
+    description: "Allow reader order books"
+    participant: "org.library.net.Reader"
+    operation: ALL
+    resource: "org.library.net.FinePayment"
+    action: ALLOW
+}
+
+rule LibrarianFull {
+    description: "Grand Librarian full access to net"
+    participant: "org.library.net.Librarian"
+    operation: ALL
+    resource: "org.library.net.*"
+    action: ALLOW
+}
+
+rule SystemACL {
+    description:  "System ACL to permit all access"
+    participant: "org.hyperledger.composer.system.Participant"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
+
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
+    action: ALLOW
+}
+
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
+}
