@@ -1,0 +1,112 @@
+#cube {
+    position: absolute;
+    margin-top: 10%;
+    height: 100%;
+    width: 100%;
+
+    transform-style: preserve-3d;
+    animation: cube_rotate;
+    animation-duration: 30000s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    animation-timing-function: ease-out;
+    animation-play-state: paused;
+}
+
+.Face {
+    position:       absolute;
+    height:         33.3%;
+    width:          25.0%;
+
+    opacity:        0.7;
+}
+
+#face_1 {
+    top:            33.3%;
+    left:           0%;
+    background:     #3A4859;
+    box-shadow: inset 10px 10px 89px 0px rgba(0,0,0,0.50);
+
+    transform-origin:           100% 0%;
+    animation:                  face_1_rotate;
+    animation-duration:         3s;
+    animation-iteration-count:  1;
+    animation-fill-mode:        forwards;
+    animation-play-state:       paused;
+}
+
+#face_2 {
+    top:            0%;
+    left:           25.0%;
+    background:     #8f9cae;
+    box-shadow: inset 10px 10px 89px 0px rgba(0,0,0,0.50);
+
+    transform-origin:           0% 100%;
+    animation:                  face_2_rotate;
+    animation-duration:         3s;
+    animation-iteration-count:  1;
+    animation-fill-mode:        forwards;
+    animation-play-state:       paused;
+}
+
+#face_3 {
+    top:            33.3%;
+    left:           25.0%;
+    background:     rgba(6, 63, 131, 0.73);
+    box-shadow: inset 10px 10px 89px 0px rgba(0,0,0,0.50);
+
+    animation:                  face_3_rotate;
+    animation-duration:         3s;
+    animation-iteration-count:  1;
+    animation-fill-mode:        forwards;
+    animation-play-state:       paused;
+}
+
+#face_4 {
+    top:            66.6%;
+    left:           25.0%;
+    background:     #7b959d;
+    box-shadow: inset 10px 10px 89px 0px rgba(0,0,0,0.50);
+
+    transform-origin:           0% 0%;
+    animation:                  face_4_rotate;
+    animation-duration:         3s;
+    animation-iteration-count:  1;
+    animation-fill-mode:        forwards;
+    animation-play-state:       paused;
+}
+
+#face_5 {
+    top:            33.3%;
+    left:           50%;
+    background:     #8997be;
+    box-shadow: inset 10px 10px 89px 0px rgba(0,0,0,0.50);
+
+    transform-style:            preserve-3d;
+    transform-origin:           0% 0%;
+
+    animation:                  face_5_rotate;
+    animation-duration:         3s;
+    animation-iteration-count:  1;
+    animation-fill-mode:        forwards;
+    animation-play-state:       paused;
+}
+
+#face_6 {
+    top:            0%;
+    left:           100%;
+
+    height:         100%;
+    width:          100%;
+    opacity:        1.0;
+    background:     #b0c4de;
+    box-shadow: inset 10px 10px 89px 0px rgba(0,0,0,0.50);
+
+    transform-origin:           0% 0%;
+    animation:                  face_6_rotate;
+    animation-duration:         3s;
+    animation-iteration-count:  1;
+    animation-fill-mode:        forwards;
+    animation-play-state:       paused;
+}

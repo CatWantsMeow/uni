@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>DOM manipulation</title>
+        <script src="jquery.min.js"></script>
+
+        <style>
+            #inputs_container {
+                margin: auto;
+                width: 49%;
+                float: left;
+            }
+
+            #inputs_container #add_input_button {
+                width: 100%;
+                font-size: 2em;
+            }
+
+            #inputs_container input {
+                width: 99%;
+                margin-top: 10px;
+                font-size: 2em;
+            }
+
+            #text_container {
+                width: 49%;
+                float: right;
+            }
+
+            #text_container #combine_text_button {
+                width: 100%;
+                font-size: 2em;
+            }
+
+            #text_container #text {
+                width: 99%;
+                resize: vertical;
+                min-height: 500px;
+                margin-top: 10px;
+                font-size: 2em;
+            }
+
+        </style>
+
+        <script>
+            $(window).load(function() {
+                $('#add_input_button').click(function() {
+                    $('#inputs').html($('#inputs').html() + '<input type="text">')
+                });
+
+                $('#combine_text_button').click(function() {
+                    $('#inputs > input').each(function(index) {
+                        $("#text").val($("#text").val() + $(this).val() + '\n');
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="inputs_container">
+            <button id="add_input_button">Add text field</button>
+            <div id="inputs">
+            </div>
+        </div>
+
+        <div id="text_container">
+            <div>
+                <button id="combine_text_button">Combine Text</button>
+            </div>
+            <div>
+                <textarea id="text"></textarea>
+            </div>
+        </div>
+    </body>
+</html>

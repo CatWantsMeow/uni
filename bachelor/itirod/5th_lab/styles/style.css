@@ -1,0 +1,39 @@
+body {
+    font-family: Calibri;
+    color: #3A4859;
+    background: #F5f6f7;
+}
+
+.button {
+    background: #DAE1E8;
+    text-align: center;
+    padding: 10px;
+    font-size: 15pt;
+
+    height: 5%;
+    width: 15%;
+    top: 10px;
+    position: absolute;
+}
+
+.button:hover {
+    background: rgba(60, 113, 158, 0.39);
+}
+
+#fold_button {
+    left: 33.5%;
+}
+
+#rotate_button {
+    left: 50.5%;
+}
+
+#cube_container {
+    position: relative;
+    height: 450px;
+    width: 600px;
+    margin: 6% auto;
+
+    transform: rotate3d(1, -1, 0, 50deg);
+    transform-style: preserve-3d;
+}

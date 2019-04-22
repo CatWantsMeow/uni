@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Google interships</title>
+    </head>
+
+    <body>
+        <br />
+        <header>
+            <table align="center" cellspacing="10">
+                <tr>
+                    <td>
+                        <img height="70" src="images/google_logo.png" />
+                    </td>
+                    <td>
+                        <font size="8" face="Calibri" color="#A0A0A0">
+                            Careers
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </header>
+        <br />
+
+        <table align="center"  width="98%"  cellpadding="40" cellspacing="0">
+            <tr bgcolor="#F8F8FF">
+                <td>
+                    <video controls="controls" width="500">
+                        <source src="videos/google_interns.mp4" codecs="avc1.42E01E, mp4a.40.2"/>
+                        Your browser does not support the video
+                    </video>
+                </td>
+                <td>
+                    <font size="10" face="Calibri" color="#4F5F6F">
+                        Technical Internships
+                    </font>
+                    <p align="justify">
+                        <font size="6" face="Calibri" color="#2F2F2F">
+                            Build new features and improve our products
+                            (and get some extra guidance along the way).
+                            Start dates are flexible and are offered year-round,
+                            but you’ll need to commit to at least three months
+                            of full-time work.
+                        </font>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <br />
+
+        <form>
+            <table width="98%" align="center" cellspacing="30" bgcolor="#F8F8FF">
+                <tr>
+                    <td>
+                        <table cellpadding="30">
+                            <tr>
+                                <td>
+                                    <img height="200" src="images/google_form.png" />
+                                </td>
+                                <td>
+                                    <p align="center">
+                                        <font size="8" face="Calibri" color="#4F5F6F">
+                                            Join the Google Careers
+                                        </font>
+                                    </p>
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Interested in joining us, but not sure where to start?
+                                        Simply complete the form below and send it.
+                                        We will consider your request and let you know about our decision.
+                                    </font>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="10" width="100%">
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <font size="10" face="Calibri" color="#4F5F6F">
+                                        Info about you
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Your name:
+                                    </font>
+                                </td>
+                                <td>
+                                    <input name="name"
+                                           required
+                                           placeholder="Your name"
+                                           type="text"
+                                           size="30"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Your email:
+                                    </font>
+                                </td>
+                                <td>
+                                    <input name="email"
+                                           required
+                                           placeholder="Your email"
+                                           type="email"
+                                           size="30"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Your education:
+                                    </font>
+                                </td>
+                                <td>
+                                    <input name="education"
+                                           required
+                                           placeholder="Your education"
+                                           type="text"
+                                           size="30"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        You intrested in:
+                                    </font>
+                                </td>
+                                <td>
+                                    <input name="interests"
+                                           required
+                                           placeholder="Your interests"
+                                           type="text"
+                                           size="30" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Upload your photo:
+                                    </font>
+                                </td>
+                                <td>
+                                    <input name="photo"
+                                           required
+                                           placeholder="Your photo"
+                                           type="file"
+                                           accept="image/*"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <table cellpadding="10" width="100%">
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <font size="10" face="Calibri" color="#4F5F6F">
+                                        Your professional skills<br />
+                                        (choose one main for each category)
+                                    </font>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Technical knowledge:
+                                    </font>
+                                </td>
+                                <td align="left">
+                                    <input name="technicak_skills"
+                                           required
+                                           placeholder="Your technical skill"
+                                           type="text"
+                                           size="19"
+                                           list="technical_skills"/>
+                                    <datalist id="technical_skills">
+                                        <option>Arhetecture design</option>
+                                        <option>Optimization algorithms</option>
+                                        <option>Machine learning algorithms</option>
+                                        <option>Data processing algorithms</option>
+                                    </datalist>
+                                    <select name="techincal_level">
+                                        <option value="excellent">Excellent</option>
+                                        <option value="high">High</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="low">Low</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Implementation:
+                                    </font>
+                                </td>
+                                <td align="left">
+                                    <input name="implementation_skill"
+                                           required
+                                           placeholder="Your implementation skill"
+                                           type="text"
+                                           size="19"
+                                           list="implementation_skills"/>
+                                    <datalist id="implementation_skills">
+                                        <option>C/С++</option>
+                                        <option>Python</option>
+                                        <option>Java</option>
+                                        <option>Scala</option>
+                                    </datalist>
+                                    <select>
+                                        <option value="excellent">Excellent</option>
+                                        <option value="high">High</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="low">Low</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <font size="6" face="Calibri" color="#2F2F2F">
+                                        Communication:
+                                    </font>
+                                </td>
+                                <td align="left">
+                                    <input name="communication_skill"
+                                           required
+                                           placeholder="Your communication skill"
+                                           type="text"
+                                           size="19"
+                                           list="communication_skills"/>
+                                    <datalist id="communication_skills">
+                                        <option>Huge team coordination</option>
+                                        <option>Leading small teams</option>
+                                        <option>Buisness communication with partners</option>
+                                        <option>Communication within team</option>
+                                    </datalist>
+                                    <select name="communication_level">
+                                        <option value="excellent">Excellent</option>
+                                        <option value="high">High</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="low">Low</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="10" width="100%">
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <font size="10" face="Calibri" color="#4F5F6F">
+                                        Complete the form? Send a request to us!
+                                    </font>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" align="right">
+                                    <input type="submit" value="Send a request" />
+                                </td>
+                                <td align="left">
+                                    <input type="reset" value="Decline" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

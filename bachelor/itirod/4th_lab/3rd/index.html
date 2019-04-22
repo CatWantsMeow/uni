@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link herf="css/bootstrap-theme.min.css" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <title>Google interships</title>
+    </head>
+
+    <body>
+        <header>
+            <img height="150" src="images/google_logo.png" />
+            Careers
+        </header>
+
+        <main>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Technical Internships
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <video controls="controls" width="500">
+                                <source src="videos/google_interns.mp4" codecs="avc1.42E01E, mp4a.40.2"/>
+                                Your browser does not support the video
+                            </video>
+                        </div>
+                        <div class="media-body">
+                                    Build new features and improve our products
+                                    (and get some extra guidance along the way).
+                                    Start dates are flexible and are offered year-round,
+                                    but you’ll need to commit to at least three months
+                                    of full-time work.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Join the Google Careers
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="media">
+                        <div class="media-left">
+                            <img height="200" src="images/google_form.png" />
+                        </div>
+                        <div class="media-body">
+                            Interested in joining us, but not sure where to start?
+                            Simply complete the form below and send it.
+                            We will consider your request and let you know about our decision.
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="page-header">
+                            <h2>Info about you</h2>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name">Your name</label>
+                            <input id="name" class="form-control" name="name" required
+                                   placeholder="Your name" type="text" size="30"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your email</label>
+                            <input id="email" class="form-control" name="email" required
+                                   placeholder="Your email" type="email" size="30"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="education">Your education</label>
+                            <input id="education" class="form-control" name="education" required
+                                   placeholder="Your education" type="text" size="30"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interests">You intrested in</label>
+                            <textarea id="interests" class="form-control" name="interests" required
+                                      placeholder="Your interests">
+                            </textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photo">Upload your photo</label>
+                            <input id="photo" name="photo" required
+                                   placeholder="Your photo" type="file" accept="image/*"/>
+                        </div>
+
+                        <div class="btn-group-lg">
+                            <button class="btn btn-primary" type="submit">
+                                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                Send a request
+                            </button>
+                            <button class="btn btn-default" type="reset">
+                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                 Decline
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

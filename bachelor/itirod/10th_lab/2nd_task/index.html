@@ -1,0 +1,51 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Huffman's compression algorithm</title>
+    <script src="js/huffman.js"></script>
+    <style>
+        body div {
+            width: 100%;
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        body div textarea {
+            width: 50%;
+            height: 200px;
+            font-size: 1em;
+        }
+
+        body div input {
+            width: 10%;
+            font-size: 3em;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <textarea id="input" rows="5" cols="80"></textarea>
+    </div>
+    <div>
+        <input id="compress" type="button" value="Архивировать" />
+    </div>
+    <div>
+        Длинна исходного текста:
+        <span id="inputlength"></span>
+        <br/>
+        Длинна архивированных данных:
+        <span id="outputlength"></span>
+    </div>
+    <div>
+        Двоичные коды, закрепленные за символами
+        <br/>
+        <span id="codes"></span>
+        <br/>
+    </div>
+    <div>
+        Архивированные данные: <br/>
+        <textarea id="output"></textarea>
+    </div>
+    </body>
+</html>

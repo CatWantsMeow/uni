@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>DOM manipulation</title>
+
+        <style>
+            #inputs_container {
+                margin: auto;
+                width: 49%;
+                float: left;
+            }
+
+            #inputs_container #add_input_button {
+                width: 100%;
+                font-size: 2em;
+            }
+
+            #inputs_container input {
+                width: 99%;
+                margin-top: 10px;
+                font-size: 2em;
+            }
+
+            #text_container {
+                width: 49%;
+                float: right;
+            }
+
+            #text_container #combine_text_button {
+                width: 100%;
+                font-size: 2em;
+            }
+
+            #text_container #text {
+                width: 99%;
+                resize: vertical;
+                min-height: 500px;
+                margin-top: 10px;
+                font-size: 2em;
+            }
+
+        </style>
+
+        <script>
+            window.onload = function() {
+
+                var add_input_button = document.getElementById('add_input_button');
+                add_input_button.onclick = function() {
+                    var inputs_container = document.getElementById('inputs');
+                    inputs_container.innerHTML += '<input type="text">'
+                }
+
+                var combine_text_button = document.getElementById('combine_text_button');
+                combine_text_button.onclick = function() {
+                    var text_area = document.getElementById('text');
+                    text_area.value = "";
+
+                    var inputs = document.getElementById('inputs').children;
+                    for (var i = 0; i < inputs.length; i++) {
+                        text_area.value += inputs[i].value + '\n';
+                    }
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div id="inputs_container">
+            <button id="add_input_button">Add text field</button>
+            <div id="inputs">
+            </div>
+        </div>
+
+        <div id="text_container">
+            <div>
+                <button id="combine_text_button">Combine Text</button>
+            </div>
+            <div>
+                <textarea id="text"></textarea>
+            </div>
+        </div>
+    </body>
+</html>

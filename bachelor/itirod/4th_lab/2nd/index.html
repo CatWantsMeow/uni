@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link href="styles/main.css" rel="stylesheet">
+    <link href="styles/header.css" rel="stylesheet">
+    <link href="styles/content.css" rel="stylesheet">
+    <link href="styles/menu.css" rel="stylesheet">
+    <title>Тренинг по JavaScript</title>
+</head>
+
+<body>
+    <header>
+        <div>
+            <div class="header-image">
+                <img src="images/js.png" width="256" align="top"/>
+            </div>
+            <div class="header-text">
+                 Тренинг Javascript
+            </div>
+        </div>
+    </header>
+
+    <menu class="main-menu">
+        <a class="menu-item" href="#about">О тренинге</a>
+        <a class="menu-item" href="#themes">Темы</a>
+        <a class="menu-item" href="#requirements">Требования</a>
+        <a class="menu-item" href="#holding">Проведение</a>
+    </menu>
+
+    <main>
+        <div class="content">
+            <article class="about" id="about">
+                <article class="subheader-text">
+                    <h1>
+                        О тренинге
+                    </h1>
+                    На тренинге изучается синтаксис языка JavaScript.
+                    Рассматриваются общепринятые стандарты и лучшие практики.
+                    Уделяется значительное внимание сложным моментам и
+                    тонкостям языка. Тренинг рассчитан на практикующих
+                    программистов, желающих изучить язык JavaScript.
+                </article>
+                <pre class="code">
+Object.prototype.each = function(f) {
+    for (var prop in this) {
+        var value = this[prop];
+        f.call(value, prop, value);
+    }
+}
+
+
+
+
+
+function CoffeeMachine(power, capacity) {
+    var waterAmount = 0;
+    var WATER_HEAT_CAPACITY = 4200;
+
+    this.run = function() {
+        setTimeout(onReady, getTimeToBoil());
+    }
+};
+                </pre>
+            </article>
+
+            <article class="themes" id="themes">
+                <h1>Темы</h1>
+                <ol type="1">
+                    <li>
+                        <p>
+                            Современный JavaScript. HTML5 APIs.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            HTML. От отдельных тегов до Semantic Web.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            CSS3. Подходы к верстке страницы. Анимация. Responsive
+                            Web Design. CSS препроцессоры LESS и Stylus.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Разработка через тестирование в JavaScript.
+                            Юнит-тестирование клиентского кода. Автоматизированное
+                            функциональное тестирование.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Архитектура приложения. Single Page Application. AngularJS.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Структура проекта. Модульность. Управление зависимостями и
+                            ресурсами. Grunt. AMD, RequireJS.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Инструменты современного веб-разработчика. Sublime Text.
+                            Web Storm. Google Chrome Developer Tools. Бонус: Git и Git Flow.
+                        </p>
+                    </li>
+                </ol>
+            </article>
+
+            <article class="requirements" id="requirements">
+                <h1>Требования к кандидатам</h1>
+                <ol type="1">
+                    <li>
+                        <p>
+                            Знание основ программирования, ООП и алгоритмизации;
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Технический английский
+                            (на уровне уверенного чтения технических документов).
+                        </p>
+                    </li>
+                </ol>
+            </article>
+
+            <article class="holding-info" id="holding">
+                <h1>Информация о проведении</h1>
+                <ul>
+                    <li>
+                        <p>
+                            Периодичность занятий: 2-3 занятия в неделю вечером
+                            (время будет уточняться перед непосредственным стартом тренинга)
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Место проведения:  Радиальная, 40
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Продолжительность тренинга: 8 недель
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Количество слушателей в группе: 25 человек
+                        </p>
+                    </li>
+                </ul>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

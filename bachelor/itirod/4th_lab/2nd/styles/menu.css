@@ -1,0 +1,20 @@
+menu.main-menu {
+    margin: 0px;
+    padding: 10px;
+    background-color: #ecf0f1;
+    border-bottom: 1px solid #95a5a6;
+    display: table;
+    width: 100%;
+}
+
+menu.main-menu > .menu-item {
+    display: table-cell;
+
+    font-family: Calibri;
+    font-size: 2em;
+    text-decoration: none;
+    text-align: center;
+    color: #34495e;
+
+    width: 25%;
+}
