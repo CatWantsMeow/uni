@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=jupiter
+      - POSTGRES_USER=jupiter
+
+  backend:
+    build: services/backend
+    image: jupiterapp/backend
+    env_file:
+      - backend.env
+
+  frontend:
+    build: services/frontend
+    image: jupiterapp/frontend
+
+  scoring:
+    build: services/scoring
+    image: jupiterapp/scoring
