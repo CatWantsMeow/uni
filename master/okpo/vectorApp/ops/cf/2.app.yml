@@ -1,0 +1,206 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  StackName:
+    Type: String
+    Default: vector-app
+  ServiceName:
+    Type: String
+    Default: vector-app
+  AppImage:
+    Type: String
+    Default: jupiterapp/vector-app:latest
+  AppPort:
+    Type: Number
+    Default: 8080
+  TaskCpu:
+    Type: Number
+    Default: 256
+  TaskMemory:
+    Type: Number
+    Default: 512
+  LoadBalancerPath:
+    Type: String
+    Default: "*"
+  LoadBalancerPriority:
+    Type: Number
+    Default: 1
+  TasksInitialCount:
+    Type: Number
+    Default: 1
+
+Resources:
+  ECSTaskExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: [ecs-tasks.amazonaws.com]
+          Action: ['sts:AssumeRole']
+      Path: /
+      Policies:
+      - PolicyName: AmazonECSTaskExecutionRolePolicy
+        PolicyDocument:
+          Statement:
+          - Effect: Allow
+            Action:
+            - 'ecr:GetAuthorizationToken'
+            - 'ecr:BatchCheckLayerAvailability'
+            - 'ecr:GetDownloadUrlForLayer'
+            - 'ecr:BatchGetImage'
+            - 'logs:CreateLogStream'
+            - 'logs:PutLogEvents'
+            Resource: '*'
+
+  FargateContainerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Access to the Fargate containers
+      VpcId:
+        Fn::ImportValue:
+          !Join [':', [!Ref 'StackName', 'VPCId']]
+
+  EcsSecurityGroupIngressFromPublicALB:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref 'FargateContainerSecurityGroup'
+      IpProtocol: -1
+      SourceSecurityGroupId:
+        Fn::ImportValue:
+          !Join [':', [!Ref 'StackName', 'LoadBalancerSecurityGroup']]
+
+  EcsSecurityGroupIngressFromSelf:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      GroupId: !Ref 'FargateContainerSecurityGroup'
+      IpProtocol: -1
+      SourceSecurityGroupId: !Ref 'FargateContainerSecurityGroup'
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Ref 'ServiceName'
+      Cpu: !Ref 'TaskCpu'
+      Memory: !Ref 'TaskMemory'
+      NetworkMode: awsvpc
+      ExecutionRoleArn: !GetAtt 'ECSTaskExecutionRole.Arn'
+      RequiresCompatibilities:
+        - FARGATE
+      ContainerDefinitions:
+        - Name: !Ref 'ServiceName'
+          Cpu: !Ref 'TaskCpu'
+          Memory: !Ref 'TaskMemory'
+          Image: !Ref 'AppImage'
+          PortMappings:
+            - ContainerPort: !Ref 'AppPort'
+
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+
+  Service:
+    Type: AWS::ECS::Service
+    DependsOn: LoadBalancerRule
+    Properties:
+      ServiceName: !Ref 'ServiceName'
+      Cluster: !Ref 'ECSCluster'
+      LaunchType: FARGATE
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DesiredCount: !Ref 'TasksInitialCount'
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups: [!Ref 'FargateContainerSecurityGroup']
+          Subnets:
+            - Fn::ImportValue:
+                !Join [':', [!Ref 'StackName', 'SubnetA']]
+            - Fn::ImportValue:
+                !Join [':', [!Ref 'StackName', 'SubnetB']]
+      TaskDefinition: !Ref 'TaskDefinition'
+      LoadBalancers:
+        - ContainerName: !Ref 'ServiceName'
+          ContainerPort: !Ref 'AppPort'
+          TargetGroupArn: !Ref 'TargetGroup'
+
+  ServiceAutoScalingRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: application-autoscaling.amazonaws.com
+            Action: sts:AssumeRole
+      Path: /
+      Policies:
+        - PolicyName: AmazonECSTaskAutoScalingPolicy
+          PolicyDocument:
+            Statement:
+            - Effect: Allow
+              Action:
+              - application-autoscaling:*
+              - cloudwatch:DescribeAlarms
+              - cloudwatch:PutMetricAlarm
+              - ecs:DescribeServices
+              - ecs:UpdateService
+              Resource: '*'
+
+  ServiceScalingTarget:
+    Type: AWS::ApplicationAutoScaling::ScalableTarget
+    Properties:
+      MinCapacity: 1
+      MaxCapacity: 10
+      ResourceId: !Sub
+        - service/${ClusterName}/${ServiceName}
+        - ClusterName: !Ref ECSCluster
+          ServiceName: !GetAtt Service.Name
+      RoleARN: !GetAtt ServiceAutoScalingRole.Arn
+      ScalableDimension: ecs:service:DesiredCount
+      ServiceNamespace: ecs
+
+  ServiceScalingPolicy:
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: !Join ['-', [!GetAtt Service.Name, 'AverageCPUScaling']]
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref ServiceScalingTarget
+      TargetTrackingScalingPolicyConfiguration:
+        ScaleInCooldown: 60
+        ScaleOutCooldown: 60
+        TargetValue: 60
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ECSServiceAverageCPUUtilization
+
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      HealthCheckPath: /
+      HealthCheckProtocol: HTTP
+      HealthCheckIntervalSeconds: 10
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      TargetType: ip
+      Name: !Ref 'ServiceName'
+      Port: !Ref 'AppPort'
+      Protocol: HTTP
+      UnhealthyThresholdCount: 2
+      VpcId:
+        Fn::ImportValue:
+          !Join [':', [!Ref 'StackName', 'VPCId']]
+
+  LoadBalancerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      Actions:
+        - TargetGroupArn: !Ref 'TargetGroup'
+          Type: 'forward'
+      Conditions:
+        - Field: path-pattern
+          Values: [!Ref 'LoadBalancerPath']
+      ListenerArn:
+        Fn::ImportValue:
+          !Join [':', [!Ref 'StackName', 'LoadBalancerListener']]
+      Priority: !Ref 'LoadBalancerPriority'

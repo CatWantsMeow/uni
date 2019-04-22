@@ -1,0 +1,17 @@
+sudo: required
+
+services:
+  - docker
+
+language: go
+
+before_install:
+  - docker build -t jupiterapp/vector-app:latest .
+
+script:
+  - printf "ok"
+
+after_success:
+  - docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}
+  - docker push jupiterapp/vector-app:${TRAVIS_BRANCH}
+  - if [ ${TRAVIS_BRANCH} == "master" ]; then docker push jupiterapp/vector-app:latest; fi
